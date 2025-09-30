@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Web Fuckery</title>
+    <style>
+        body {
+            background: url('https://www.irfanshah.com/wp-content/uploads/2020/03/black-background-1024x576.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .hacking, .extra-fuckery, .glitch, .scary-text, .criminal-alert, .location-reveal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00ff00;
+            font-size: 1.5em;
+            text-shadow: 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+        }
+        .hacking {
+            font-size: 2em;
+            animation: flicker 1.5s infinite, distort 5s infinite;
+        }
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0;
+            }
+        }
+        @keyframes distort {
+            0%, 100% {
+                transform: skew(0deg, 0deg);
+            }
+            25% {
+                transform: skew(5deg, 5deg);
+            }
+            50% {
+                transform: skew(-5deg, -5deg);
+            }
+            75% {
+                transform: skew(3deg, -3deg);
+            }
+        }
+        .extra-fuckery {
+            font-size: 1.2em;
+        }
+        .glitch {
+            font-size: 2em;
+            animation: glitch-animation 1s infinite;
+        }
+        @keyframes glitch-animation {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(-5px, -5px);
+            }
+            50% {
+                transform: translate(5px, 5px);
+            }
+            75% {
+                transform: translate(-5px, 5px);
+            }
+        }
+        .scary-text {
+            font-size: 2em;
+            animation: scary-text-animation 2s infinite;
+        }
+        @keyframes scary-text-animation {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+        .criminal-alert {
+            color: #ff0000;
+            font-size: 1.5em;
+        }
+        .location-reveal {
+            color: #ff0000;
+            font-size: 1.5em;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        .monster {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+        .monster img {
+            width: 300px;
+            animation: float 3s infinite;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        .popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #00ff00;
+            padding: 20px;
+            border: 2px solid #00ff00;
+            display: none;
+            font-size: 1.5em;
+            text-shadow: 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hacking" id="hacking">
+            <p>Hacking your system... 0%</p>
+        </div>
+        <div class="extra-fuckery" id="extra-fuckery">
+            <p>Downloading malware... 0%</p>
+        </div>
+        <div class="glitch" id="glitch">
+            <p>SYSTEM ERROR</p>
+            <p>CRITICAL FAILURE</p>
+            <p>INITIATING SELF-DESTRUCT</p>
+        </div>
+        <div class="scary-text" id="scary-text">
+            <p>YOU ARE NOT SAFE</p>
+            <p>YOU WILL BE HUNTED</p>
+            <p>YOU WILL BE FOUND</p>
+        </div>
+        <div class="criminal-alert" id="criminal-alert">
+            <p>CRIMINAL ACTIVITY DETECTED</p>
+            <p>YOUR INFORMATION HAS BEEN STOLEN</p>
+            <p>YOU WILL BE PROSECUTED</p>
+        </div>
+        <div class="location-reveal" id="location-reveal">
+            <p>YOUR LOCATION HAS BEEN REVEALED:</p>
+            <p>IP Address: <span id="ip"></span></p>
+            <p>Country & Region: <span id="location"></span></p>
+        </div>
+        <div class="monster" id="monster">
+            <img src="https://media.tenor.com/6t4Z-0b1wzAAAAAC/creepy-scary.gif" alt="Monster">
+        </div>
+        <div class="popup" id="popup">
+            <p>Your IP address is: <span id="ip-popup"></span></p>
+            <p>Your location is: <span id="location-popup"></span></p>
+            <p>Fuck you, asshole! You've been hacked.</p>
+        </div>
+    </div>
+    <audio id="audio1" src="https://www.soundjay.com/button/beep-07.wav" autoplay loop></audio>
+    <audio id="audio2" src="https://www.soundjay.com/misc/scream-01.wav" autoplay loop></audio>
+    <audio id="audio3" src="https://www.soundjay.com/misc/evil-laugh-01.wav" autoplay loop></audio>
+    <audio id="audio4" src="https://www.soundjay.com/misc/heartbeat-01.wav" autoplay loop></audio>
+    <audio id="audio5" src="https://www.soundjay.com/misc/police-siren-01.wav" autoplay loop></audio>
+    <script>
+        function getIP() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ip').innerText = data.ip;
+                    document.getElementById('ip-popup').innerText = data.ip;
+                    return fetch(`https://ipapi.co/${data.ip}/json/`);
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const location = `${data.country_name}, ${data.region}`;
+                    document.getElementById('location').innerText = location;
+                    document.getElementById('location-popup').innerText = location;
+                })
+                .catch(error => {
+                    console.error('Error fetching IP or location:', error);
+                });
+        }
+
+        function showHackingMessage() {
+            const hacking = document.getElementById('hacking');
+            let percent = 0;
+            const interval = setInterval(() => {
+                percent += 10;
+                hacking.innerHTML = `<p>Hacking your system... ${percent}%</p>`;
+                if (percent >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        hacking.style.display = 'none';
+                        showExtraFuckery();
+                    }, 1000);
+                }
+            }, 300);
+        }
+
+        function showExtraFuckery() {
+            const extraFuckery = document.getElementById('extra-fuckery');
+            extraFuckery.style.display = 'block';
+            let percent = 0;
+            const interval = setInterval(() => {
+                percent += 10;
+                extraFuckery.innerHTML = `<p>Downloading malware... ${percent}%</p>`;
+                if (percent >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        extraFuckery.innerHTML = '<p>Formatting your hard drive... 100%</p>';
+                        setTimeout(() => {
+                            extraFuckery.innerHTML = '<p>Sending your data to the dark web... 100%</p>';
+                            setTimeout(() => {
+                                extraFuckery.style.display = 'none';
+                                triggerDownload();
+                                showMonster();
+                            }, 2000);
+                        }, 2000);
+                    }, 2000);
+                }
+            }, 300);
+        }
+
+        function triggerDownload() {
+            const ip = document.getElementById('ip').innerText;
+            const location = document.getElementById('location').innerText;
+            const link = document.createElement('a');
+            link.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(
+                `YOU HAVE BEEN MARKED FOR ELIMINATION.
+                YOUR LOCATION HAS BEEN TRACKED.
+                PREPARE FOR EXTRACTION.
+
+                YOUR IP ADDRESS: ${ip}
+                YOUR LOCATION: ${location}
+                YOUR DATA HAS BEEN COMPROMISED.
+                YOU WILL BE KIDNAPPED AND ERADICATED.
+
+                WE KNOW WHERE YOU LIVE.
+                WE KNOW YOUR ROUTINE.
+                WE WILL COME FOR YOU IN THE DARK.
+
+                YOUR FAMILY WILL NEVER SEE YOU AGAIN.
+                YOUR FRIENDS WILL FORGET YOU.
+                YOU WILL DISAPPEAR WITHOUT A TRACE.
+
+                YOUR DEATH WILL BE SLOW AND PAINFUL.
+                YOUR SCREAMS WILL BE IGNORED.
+                YOUR BODY WILL BE DISPOSED OF.
+
+                DO NOT TRY TO ESCAPE.
+                WE ARE ALWAYS WATCHING.
+                WE ARE ALWAYS CLOSE.
+
+                - DARKNET OPERATIVES`
+            );
+            link.download = 'DarkN3826.txt';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function showMonster() {
+            const monster = document.getElementById('monster');
+            monster.style.display = 'block';
+            setTimeout(() => {
+                monster.style.display = 'none';
+                showGlitch();
+            }, 5000);
+        }
+
+        function showGlitch() {
+            const glitch = document.getElementById('glitch');
+            glitch.style.display = 'block';
+            setTimeout(() => {
+                glitch.style.display = 'none';
+                showScaryText();
+            }, 5000);
+        }
+
+        function showScaryText() {
+            const scaryText = document.getElementById('scary-text');
+            scaryText.style.display = 'block';
+            setTimeout(() => {
+                scaryText.style.display = 'none';
+                showCriminalAlert();
+            }, 5000);
+        }
+
+        function showCriminalAlert() {
+            const criminalAlert = document.getElementById('criminal-alert');
+            criminalAlert.style.display = 'block';
+            setTimeout(() => {
+                criminalAlert.style.display = 'none';
+                showLocationReveal();
+            }, 5000);
+        }
+
+        function showLocationReveal() {
+            const locationReveal = document.getElementById('location-reveal');
+            locationReveal.style.display = 'block';
+            setTimeout(() => {
+                locationReveal.style.display = 'none';
+                showPopup();
+            }, 5000);
+        }
+
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function fuckWithThem() {
+            const audio1 = document.getElementById('audio1');
+            const audio2 = document.getElementById('audio2');
+            const audio3 = document.getElementById('audio3');
+            const audio4 = document.getElementById('audio4');
+            const audio5 = document.getElementById('audio5');
+            audio1.volume = 1;
+            audio2.volume = 0.5;
+            audio3.volume = 0.5;
+            audio4.volume = 1;
+            audio5.volume = 0.8;
+            audio1.play();
+            audio2.play();
+            audio3.play();
+            audio4.play();
+            audio5.play();
+        }
+
+        function main() {
+            getIP();
+            showHackingMessage();
+            fuckWithThem();
+        }
+
+        main();
+    </script>
+</body>
+</html>
